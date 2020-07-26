@@ -32,14 +32,15 @@ export default class HomeScreen extends Component {
     super(props);
     this.state = {
       images : [
-        { url: "https://images.pexels.com/photos/1382734/pexels-photo-1382734.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500", name:"shakira" },
-        { url: 'https://images.pexels.com/photos/9413/animal-cute-kitten-cat.jpg?cs=srgb&dl=adorable-animal-cat-9413.jpg&fm=jpg', name: "cat" },
-        { url: 'https://i.pinimg.com/236x/c6/6b/11/c66b111bf4df809e87a1208f75d2788b.jpg', name: "baby" },
-        { url: 'https://luehangs.site/pic-chat-app-images/beautiful-blond-blonde-hair-478544.jpg', name: "woman" },
-        { url: 'https://www.mordeo.org/files/uploads/2016/10/Cute-Angry-Birds-Mobile-Wallpaper.jpg',name: "woman" },
-        { url: 'https://luehangs.site/pic-chat-app-images/attractive-balance-beautiful-186263.jpg'},
-        { url: 'https://wallpapercave.com/wp/wp2807409.jpg',},
-        { url: 'https://preppywallpapers.com/wp-content/uploads/2018/08/Gorgeous-iPhone-Wallpaper-Collection-11.jpg'}
+        { url: "http://dresshouse.it/20228-large_default/maksikleit-maxi0665-2.jpg", name: "woman" },
+        { url: "http://dresshouse.it/20195-large_default/maksikleit-maxi0665-3.jpg",name: "woman" },
+        { url: "http://dresshouse.it/19882-large_default/maksikleit-maxi0630-3.jpg"},
+        { url: "http://dresshouse.it/19765-large_default/maksikleit-maxi0636-4.jpg",},
+        { url: "http://dresshouse.it/20590-large_default/kleit-klt1561-3.jpg", name:"shakira" },
+        { url: "http://dresshouse.it/15692-large_default/kleit-klt1561-1.jpg", name: "cat" },
+        { url: "http://dresshouse.it/20187-large_default/maksikleit-maxi0664-2.jpg", name: "baby" },
+        { url: "http://dresshouse.it/13931-large_default/maksikleit-maxi0204-1.jpg"},
+        { url: "http://dresshouse.it/7455-large_default/maksikleit-maxi0087-8.jpg"},
       ],
       currentIndex: 0,
       btnTags: [{tagid: '0', pressed: false}, {tagid: '1', pressed: false}, {tagid: '2', pressed: false}, {tagid: '3', pressed: false},
