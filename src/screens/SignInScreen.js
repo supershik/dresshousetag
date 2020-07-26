@@ -57,8 +57,8 @@ export default class SignInScreen extends Component {
 
   onFBLogin(){
     const { navigate } = this.props.navigation;
-    // navigate('Home');
-    // return;
+    navigate('Home');
+    return;
 
     LoginManager.logInWithPermissions(["public_profile"]).then((result)=> {
         if (result.isCancelled) {

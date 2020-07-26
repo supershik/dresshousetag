@@ -245,7 +245,7 @@ export default class HomeScreen extends Component {
           </View>
 
           <View style={styles.progressbarItem}>
-            <Progress.Bar useNativeDriver = {true} height = {12} width = {270} progress={0.1} color={'#ffe1a5'} borderWidth={2} borderColor={'rgba(255,214,116,1)'} borderRadius = {10} style={styles.progressbar} />
+            <Progress.Bar useNativeDriver = {true} height = {12} width = {270} progress={(this.state.currentIndex+1)/this.state.total} color={'#ffe1a5'} borderWidth={2} borderColor={'rgba(255,214,116,1)'} borderRadius = {10} style={styles.progressbar} />
             {/* <Image
               style={styles.imgProgressbar} // must be passed from the parent, the number may vary depending upon your screen size
               source={imgProgressbar}
