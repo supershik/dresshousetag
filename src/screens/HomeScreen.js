@@ -21,6 +21,7 @@ import {
  import imgTagNormal from "../res/image/tag_bkg_nor.png"
  import imgTagFocus from "../res/image/tag_bkg_fcs.png"
 import Swiper from 'react-native-swiper'
+import * as Progress from 'react-native-progress';
 
 const DEVICE_WIDTH = Dimensions.get('window').width;
 const DEVICE_HEIGHT = Dimensions.get('window').height;
@@ -41,6 +42,96 @@ export default class HomeScreen extends Component {
         { url: "http://dresshouse.it/20187-large_default/maksikleit-maxi0664-2.jpg", name: "baby" },
         { url: "http://dresshouse.it/13931-large_default/maksikleit-maxi0204-1.jpg"},
         { url: "http://dresshouse.it/7455-large_default/maksikleit-maxi0087-8.jpg"},
+        
+        { url: "http://dresshouse.it/20228-large_default/maksikleit-maxi0665-2.jpg", name: "woman" },
+        { url: "http://dresshouse.it/20195-large_default/maksikleit-maxi0665-3.jpg",name: "woman" },
+        { url: "http://dresshouse.it/19882-large_default/maksikleit-maxi0630-3.jpg"},
+        { url: "http://dresshouse.it/19765-large_default/maksikleit-maxi0636-4.jpg",},
+        { url: "http://dresshouse.it/20590-large_default/kleit-klt1561-3.jpg", name:"shakira" },
+        { url: "http://dresshouse.it/15692-large_default/kleit-klt1561-1.jpg", name: "cat" },
+        { url: "http://dresshouse.it/20187-large_default/maksikleit-maxi0664-2.jpg", name: "baby" },
+        { url: "http://dresshouse.it/13931-large_default/maksikleit-maxi0204-1.jpg"},
+        { url: "http://dresshouse.it/7455-large_default/maksikleit-maxi0087-8.jpg"},
+
+        { url: "http://dresshouse.it/20228-large_default/maksikleit-maxi0665-2.jpg", name: "woman" },
+        { url: "http://dresshouse.it/20195-large_default/maksikleit-maxi0665-3.jpg",name: "woman" },
+        { url: "http://dresshouse.it/19882-large_default/maksikleit-maxi0630-3.jpg"},
+        { url: "http://dresshouse.it/19765-large_default/maksikleit-maxi0636-4.jpg",},
+        { url: "http://dresshouse.it/20590-large_default/kleit-klt1561-3.jpg", name:"shakira" },
+        { url: "http://dresshouse.it/15692-large_default/kleit-klt1561-1.jpg", name: "cat" },
+        { url: "http://dresshouse.it/20187-large_default/maksikleit-maxi0664-2.jpg", name: "baby" },
+        { url: "http://dresshouse.it/13931-large_default/maksikleit-maxi0204-1.jpg"},
+        { url: "http://dresshouse.it/7455-large_default/maksikleit-maxi0087-8.jpg"},
+
+        { url: "http://dresshouse.it/20228-large_default/maksikleit-maxi0665-2.jpg", name: "woman" },
+        { url: "http://dresshouse.it/20195-large_default/maksikleit-maxi0665-3.jpg",name: "woman" },
+        { url: "http://dresshouse.it/19882-large_default/maksikleit-maxi0630-3.jpg"},
+        { url: "http://dresshouse.it/19765-large_default/maksikleit-maxi0636-4.jpg",},
+        { url: "http://dresshouse.it/20590-large_default/kleit-klt1561-3.jpg", name:"shakira" },
+        { url: "http://dresshouse.it/15692-large_default/kleit-klt1561-1.jpg", name: "cat" },
+        { url: "http://dresshouse.it/20187-large_default/maksikleit-maxi0664-2.jpg", name: "baby" },
+        { url: "http://dresshouse.it/13931-large_default/maksikleit-maxi0204-1.jpg"},
+        { url: "http://dresshouse.it/7455-large_default/maksikleit-maxi0087-8.jpg"},
+
+        { url: "http://dresshouse.it/20228-large_default/maksikleit-maxi0665-2.jpg", name: "woman" },
+        { url: "http://dresshouse.it/20195-large_default/maksikleit-maxi0665-3.jpg",name: "woman" },
+        { url: "http://dresshouse.it/19882-large_default/maksikleit-maxi0630-3.jpg"},
+        { url: "http://dresshouse.it/19765-large_default/maksikleit-maxi0636-4.jpg",},
+        { url: "http://dresshouse.it/20590-large_default/kleit-klt1561-3.jpg", name:"shakira" },
+        { url: "http://dresshouse.it/15692-large_default/kleit-klt1561-1.jpg", name: "cat" },
+        { url: "http://dresshouse.it/20187-large_default/maksikleit-maxi0664-2.jpg", name: "baby" },
+        { url: "http://dresshouse.it/13931-large_default/maksikleit-maxi0204-1.jpg"},
+        { url: "http://dresshouse.it/7455-large_default/maksikleit-maxi0087-8.jpg"},
+
+        { url: "http://dresshouse.it/20228-large_default/maksikleit-maxi0665-2.jpg", name: "woman" },
+        { url: "http://dresshouse.it/20195-large_default/maksikleit-maxi0665-3.jpg",name: "woman" },
+        { url: "http://dresshouse.it/19882-large_default/maksikleit-maxi0630-3.jpg"},
+        { url: "http://dresshouse.it/19765-large_default/maksikleit-maxi0636-4.jpg",},
+        { url: "http://dresshouse.it/20590-large_default/kleit-klt1561-3.jpg", name:"shakira" },
+        { url: "http://dresshouse.it/15692-large_default/kleit-klt1561-1.jpg", name: "cat" },
+        { url: "http://dresshouse.it/20187-large_default/maksikleit-maxi0664-2.jpg", name: "baby" },
+        { url: "http://dresshouse.it/13931-large_default/maksikleit-maxi0204-1.jpg"},
+        { url: "http://dresshouse.it/7455-large_default/maksikleit-maxi0087-8.jpg"},
+
+        { url: "http://dresshouse.it/20228-large_default/maksikleit-maxi0665-2.jpg", name: "woman" },
+        { url: "http://dresshouse.it/20195-large_default/maksikleit-maxi0665-3.jpg",name: "woman" },
+        { url: "http://dresshouse.it/19882-large_default/maksikleit-maxi0630-3.jpg"},
+        { url: "http://dresshouse.it/19765-large_default/maksikleit-maxi0636-4.jpg",},
+        { url: "http://dresshouse.it/20590-large_default/kleit-klt1561-3.jpg", name:"shakira" },
+        { url: "http://dresshouse.it/15692-large_default/kleit-klt1561-1.jpg", name: "cat" },
+        { url: "http://dresshouse.it/20187-large_default/maksikleit-maxi0664-2.jpg", name: "baby" },
+        { url: "http://dresshouse.it/13931-large_default/maksikleit-maxi0204-1.jpg"},
+        { url: "http://dresshouse.it/7455-large_default/maksikleit-maxi0087-8.jpg"},
+
+        { url: "http://dresshouse.it/20228-large_default/maksikleit-maxi0665-2.jpg", name: "woman" },
+        { url: "http://dresshouse.it/20195-large_default/maksikleit-maxi0665-3.jpg",name: "woman" },
+        { url: "http://dresshouse.it/19882-large_default/maksikleit-maxi0630-3.jpg"},
+        { url: "http://dresshouse.it/19765-large_default/maksikleit-maxi0636-4.jpg",},
+        { url: "http://dresshouse.it/20590-large_default/kleit-klt1561-3.jpg", name:"shakira" },
+        { url: "http://dresshouse.it/15692-large_default/kleit-klt1561-1.jpg", name: "cat" },
+        { url: "http://dresshouse.it/20187-large_default/maksikleit-maxi0664-2.jpg", name: "baby" },
+        { url: "http://dresshouse.it/13931-large_default/maksikleit-maxi0204-1.jpg"},
+        { url: "http://dresshouse.it/7455-large_default/maksikleit-maxi0087-8.jpg"},
+
+        { url: "http://dresshouse.it/20228-large_default/maksikleit-maxi0665-2.jpg", name: "woman" },
+        { url: "http://dresshouse.it/20195-large_default/maksikleit-maxi0665-3.jpg",name: "woman" },
+        { url: "http://dresshouse.it/19882-large_default/maksikleit-maxi0630-3.jpg"},
+        { url: "http://dresshouse.it/19765-large_default/maksikleit-maxi0636-4.jpg",},
+        { url: "http://dresshouse.it/20590-large_default/kleit-klt1561-3.jpg", name:"shakira" },
+        { url: "http://dresshouse.it/15692-large_default/kleit-klt1561-1.jpg", name: "cat" },
+        { url: "http://dresshouse.it/20187-large_default/maksikleit-maxi0664-2.jpg", name: "baby" },
+        { url: "http://dresshouse.it/13931-large_default/maksikleit-maxi0204-1.jpg"},
+        { url: "http://dresshouse.it/7455-large_default/maksikleit-maxi0087-8.jpg"},
+
+        { url: "http://dresshouse.it/20228-large_default/maksikleit-maxi0665-2.jpg", name: "woman" },
+        { url: "http://dresshouse.it/20195-large_default/maksikleit-maxi0665-3.jpg",name: "woman" },
+        { url: "http://dresshouse.it/19882-large_default/maksikleit-maxi0630-3.jpg"},
+        { url: "http://dresshouse.it/19765-large_default/maksikleit-maxi0636-4.jpg",},
+        { url: "http://dresshouse.it/20590-large_default/kleit-klt1561-3.jpg", name:"shakira" },
+        { url: "http://dresshouse.it/15692-large_default/kleit-klt1561-1.jpg", name: "cat" },
+        { url: "http://dresshouse.it/20187-large_default/maksikleit-maxi0664-2.jpg", name: "baby" },
+        { url: "http://dresshouse.it/13931-large_default/maksikleit-maxi0204-1.jpg"},
+        { url: "http://dresshouse.it/7455-large_default/maksikleit-maxi0087-8.jpg"},
       ],
       currentIndex: 0,
       btnTags: [{tagid: '0', pressed: false}, {tagid: '1', pressed: false}, {tagid: '2', pressed: false}, {tagid: '3', pressed: false},
@@ -49,10 +140,12 @@ export default class HomeScreen extends Component {
                 {tagid: '12', pressed: false}, {tagid: '13', pressed: false}, {tagid: '14', pressed: false}, {tagid: '15', pressed: false},
       ],
       numColumns: 4,
+      total: 0,
     };
   }
 
   componentDidMount(){
+    this.setState({total: this.state.images.length})
   }
 
   static navigationOptions = {
@@ -152,10 +245,11 @@ export default class HomeScreen extends Component {
           </View>
 
           <View style={styles.progressbarItem}>
-            <Image
+            <Progress.Bar useNativeDriver = {true} height = {12} width = {270} progress={0.1} color={'#ffe1a5'} borderWidth={2} borderColor={'rgba(255,214,116,1)'} borderRadius = {10} style={styles.progressbar} />
+            {/* <Image
               style={styles.imgProgressbar} // must be passed from the parent, the number may vary depending upon your screen size
               source={imgProgressbar}
-            />
+            /> */}
           </View>
 
           <View style={styles.levelItem}>
@@ -349,6 +443,12 @@ const styles = StyleSheet.create({
       marginHorizontal: 0,
       resizeMode: "stretch",
       alignItems: "center"
+    },
+    progressbar: {
+      // width: "100%",
+      // height: "30%",
+      // textAlignVertical: "center"
+      // alignItems: "center"
     },
     imgTopbar:  {
       width:"100%",
