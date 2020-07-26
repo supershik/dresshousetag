@@ -4,7 +4,6 @@ import {
   SafeAreaView,
   ScrollView,
   Text,
-  // Image,
   ImageBackground,
   View,
   Dimensions,
@@ -16,16 +15,10 @@ import {
   TouchableHighlight
  } from "react-native";
 
- import {
-  Header,
-  Colors,
-} from 'react-native/Libraries/NewAppScreen';
 import { LoginButton, AccessToken, ShareDialog, GraphRequest, GraphRequestManager, LoginManager } from 'react-native-fbsdk';
 import { Card, Image } from 'react-native-elements'
-import {Actions, ActionConst} from 'react-native-router-flux';
 import Toast from 'react-native-simple-toast'
 
-import HomeScreen from "./HomeScreen"
 import imgLogo from "../res/image/logo.png"
 import imgFlagEst from "../res/image/flag_est.png"
 import imgFlagEng from "../res/image/flag_eng.png"
@@ -55,7 +48,7 @@ export default class SignInScreen extends Component {
   }
 
   static navigationOptions = {
-    header: null,
+    headerShown: false,
   };
 
   onPressFacebook = () => {
@@ -63,9 +56,10 @@ export default class SignInScreen extends Component {
   }
 
   onFBLogin(){
-    Actions.HomeScreen();
-    return;
-    
+    const { navigate } = this.props.navigation;
+    // navigate('Home');
+    // return;
+
     LoginManager.logInWithPermissions(["public_profile"]).then((result)=> {
         if (result.isCancelled) {
           console.log("Login cancelled");
@@ -77,50 +71,6 @@ export default class SignInScreen extends Component {
               this.getPublicProfile();
           })
         }     
-
-          // AccessToken.getCurrentAccessToken().then((data) => {
-          //   const { accessToken } = data
-          //   fetch('https://graph.facebook.com/v2.5/me?fields=email,name,friends&access_token=' + accessToken)
-          //     .then((response) => response.json())
-          //     .then((json) => {
-          //       let login = {
-          //         FirstName: json.name, 
-          //         LastName: "", 
-          //         PhoneNumber: "",
-          //         UserID: json.id, 
-          //         image: "", 
-          //         notification: "1", 
-          //         phone_code: this.props.code, 
-          //         rating: ""
-          //       }
-          //       console.log('Login Success');
-          //       console.log('Data = ', login);
-
-                // this.props.saveCredentials(login);
-                // saveUserLogin(login, success => { }, errAsyncStore => { });
-                //   if (this.isCheckout) {
-                //     this.props.navigation.goBack();
-                //   } else {
-                //     this.props.saveToken(this.state.firebaseToken)
-                //     saveUserFCM(
-                //       this.state.firebaseToken, success => { }, failure => { }
-                //     )
-                //     this.props.navigation.dispatch(
-                //       StackActions.reset({
-                //         index: 0,
-                //         actions: [
-                //           NavigationActions.navigate({ routeName: "MainContainer" })
-                //         ]
-                //       })
-                //     );    
-                //   }
-              // })
-              // .catch(() => {
-              //   console.log('ERROR GETTING DATA FROM FACEBOOK')
-              // })
-          //})
-          
-        //}
       },
       function(error) {
         console.log("Login fail with error: " + error);
@@ -129,6 +79,8 @@ export default class SignInScreen extends Component {
   }
 
   getPublicProfile = async () => {
+    const { navigate } = this.props.navigation;
+
     const infoRequest = new GraphRequest(
       '/me?fields=id,name,picture',
       null,
@@ -142,7 +94,7 @@ export default class SignInScreen extends Component {
             profileImage: result.picture.data.url
           });
           Toast.show('Login Success!');
-          Actions.HomeScreen();
+          navigate('Home');
         }
       }
     );
@@ -205,12 +157,6 @@ export default class SignInScreen extends Component {
           </View>
         </View>
         <View style={styles.btnFacebook}>
-          {/* <Button
-              onPress={this.onPressFacebook}
-              title="Log in with Facebook"
-              // color="#841584"
-              accessibilityLabel="Learn more about this purple button"
-            /> */}
              {/* <LoginButton
                 // publishPermissions={["email"]}
                 onLoginFinished={
@@ -253,42 +199,6 @@ export default class SignInScreen extends Component {
                       <Text style={{flex: 1, textAlign: "center", fontSize: 16, color: '#fff', fontWeight: 'bold'}}>Log in with Facebook</Text>
                     </View>
               </TouchableOpacity>
-
-        {/* <View>
-            <LoginButton
-              onLoginFinished={
-                (error, result) => {
-                  if (error) {
-                    console.log("login has error: " + result.error);
-                  } else if (result.isCancelled) {
-                    console.log("login is cancelled.");
-                  } else {
-                    this.setState({isLoggedIn: true});
-                    AccessToken.getCurrentAccessToken().then(
-                      (data) => {
-                        console.log(data.accessToken.toString());
-                        this.getPublicProfile();
-                      }
-                    )
-                  }
-                }
-              }
-              onLogoutFinished={() => {
-                console.log("logout.");
-                this.setState({isLoggedIn: false});
-              }}/>
-            { this.state.isLoggedIn && <Card
-                title={this.state.profile.name}>
-                <Image
-                  source={{ uri: this.state.profileImage }}
-                  style={{ width: 50, height: 50 }}
-                />
-                <TouchableHighlight onPress={this.shareLinkWithDialog}>
-                  <Text style={styles.shareText}>Share link with ShareDialog</Text>
-                </TouchableHighlight>
-              </Card>
-            }
-          </View> */}
           </View>
       </SafeAreaView>
     );
