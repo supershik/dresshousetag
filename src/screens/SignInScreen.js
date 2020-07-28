@@ -18,6 +18,9 @@ import {
 import { LoginButton, AccessToken, ShareDialog, GraphRequest, GraphRequestManager, LoginManager } from 'react-native-fbsdk';
 import { Card, Image } from 'react-native-elements'
 import Toast from 'react-native-simple-toast'
+import Spinner from 'react-native-loading-spinner-overlay';
+import axios from 'axios';
+import USERAPIKit, { setUserClientToken } from '../utils/apikit';
 
 import imgLogo from "../res/image/logo.png"
 import imgFlagEst from "../res/image/flag_est.png"
@@ -42,7 +45,8 @@ export default class SignInScreen extends Component {
     this.state = {
       profile: [],
       profileImage: "",
-      isLoggedIn: false
+      isLoggedIn: false,
+      loading: false,
     };
 
   }
@@ -55,11 +59,96 @@ export default class SignInScreen extends Component {
 
   }
 
-  onFBLogin(){
-    const { navigate } = this.props.navigation;
-    navigate('Home');
-    return;
+    // requestSignin = async (data) => {
+    //   this.setState({loading: true});
+    //   const { navigate } = this.props.navigation;
+    //   const payload = {
+    //       "facebook_id" : data.id,
+    //       "name": data.name,
+    //       "age": 28,
+    //       "birthday": "1997-09-03",
+    //       "sex": "male",
+    //       "email_address": data.picture.data.url,
+    //       "signup": "2019-11-24 09:34:24",
+    //       "last_online_active": "2020-07-27 11:00:02",
+    //       "trust_id": 12
+    //   }
+    //   // fetch('https://mywebsite.com/endpoint/', {
+    //   fetch("http://localhost/tag_app", {
+    //     method: 'POST',
+    //     headers: {
+    //       Accept: 'application/json',
+    //       'Content-Type': 'application/json'
+    //     },
+    //     body: payload
+    //   }).then((response)=>{
+    //         console.log(response);
+    //         this.setState({loading: false});
+    //         Toast.show('Successfully registered.');
+    //       }).
+    //       catch((err)=>{
+    //         this.setState({loading: false});
+    //         console.log(err);
+    //         Toast.show('Failed to register');
+    //         console.log(err);
+    //     })
+    // }
 
+  requestSignin = (data) => {
+    const { navigate } = this.props.navigation;
+    const payload = {
+        "facebook_id" : data.id,
+        "name": data.name,
+        "age": "",
+        "birthday": "1980-01-01",
+        "sex": "",
+        "email_address": "",
+        "signup": "",
+        "last_online_active": "",
+        "trust_id": 1,
+    }
+    console.log('---------------------- 1  -------');
+    console.log(payload);
+    const onSuccess = ({ data }) => {
+        console.log('---------------------- 4  -------');
+        console.log(data);
+        this.setState({loading: false});
+        Toast.show('Successfully registered.');
+        this.requestTags(data);
+        //navigate('Home', {data: data});
+    }
+    const onFailure = error => {
+      console.log('---------------------- 5  -------');
+        this.setState({loading: false});
+        console.log(error);
+        Toast.show('Failed to register');
+    }
+    this.setState({loading: true});
+    USERAPIKit.post('/signin.php', payload)
+        .then(onSuccess)
+        .catch(onFailure)
+  }
+
+  requestTags = (products) => {
+    const { navigate } = this.props.navigation;
+    const onSuccess = ({ data }) => {
+        console.log(data);
+        this.setState({loading: false});
+
+        navigate('Home', {products: products, tags: data});
+    }
+    const onFailure = error => {
+      console.log('---------------------- 5  -------');
+        this.setState({loading: false});
+        console.log(error);
+    }
+    this.setState({loading: true});
+    USERAPIKit.get('/product_tags.php')
+        .then(onSuccess)
+        .catch(onFailure)
+  }
+
+  onFBLogin(){
     LoginManager.logInWithPermissions(["public_profile"]).then((result)=> {
         if (result.isCancelled) {
           console.log("Login cancelled");
@@ -79,8 +168,6 @@ export default class SignInScreen extends Component {
   }
 
   getPublicProfile = async () => {
-    const { navigate } = this.props.navigation;
-
     const infoRequest = new GraphRequest(
       '/me?fields=id,name,picture',
       null,
@@ -94,7 +181,8 @@ export default class SignInScreen extends Component {
             profileImage: result.picture.data.url
           });
           Toast.show('Login Success!');
-          navigate('Home');
+          this.requestSignin(result);
+
         }
       }
     );
@@ -120,6 +208,8 @@ export default class SignInScreen extends Component {
   render() {
     return (
       <SafeAreaView style={styles.container}>
+        <Spinner
+          visible={this.state.loading} size="large" style={styles.spinnerStyle} />
         <Image
           style={styles.logoImage} // must be passed from the parent, the number may vary depending upon your screen size
           source={imgLogo}
@@ -255,5 +345,10 @@ const styles = StyleSheet.create({
       alignItems: "center",
       marginTop: 50,
       marginHorizontal: 10,
-    }
+    },
+    spinnerStyle: {
+      position: 'absolute',
+      alignItems: 'center',
+      justifyContent: 'center',
+  },
 });

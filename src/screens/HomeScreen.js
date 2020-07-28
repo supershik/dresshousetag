@@ -22,6 +22,9 @@ import {
  import imgTagFocus from "../res/image/tag_bkg_fcs.png"
 import Swiper from 'react-native-swiper'
 import * as Progress from 'react-native-progress';
+import { StackRouter } from "react-navigation";
+import USERAPIKit, { setUserClientToken } from '../utils/apikit';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 const DEVICE_WIDTH = Dimensions.get('window').width;
 const DEVICE_HEIGHT = Dimensions.get('window').height;
@@ -42,117 +45,135 @@ export default class HomeScreen extends Component {
         { url: "http://dresshouse.it/20187-large_default/maksikleit-maxi0664-2.jpg", name: "baby" },
         { url: "http://dresshouse.it/13931-large_default/maksikleit-maxi0204-1.jpg"},
         { url: "http://dresshouse.it/7455-large_default/maksikleit-maxi0087-8.jpg"},
-        
-        { url: "http://dresshouse.it/20228-large_default/maksikleit-maxi0665-2.jpg", name: "woman" },
-        { url: "http://dresshouse.it/20195-large_default/maksikleit-maxi0665-3.jpg",name: "woman" },
-        { url: "http://dresshouse.it/19882-large_default/maksikleit-maxi0630-3.jpg"},
-        { url: "http://dresshouse.it/19765-large_default/maksikleit-maxi0636-4.jpg",},
-        { url: "http://dresshouse.it/20590-large_default/kleit-klt1561-3.jpg", name:"shakira" },
-        { url: "http://dresshouse.it/15692-large_default/kleit-klt1561-1.jpg", name: "cat" },
-        { url: "http://dresshouse.it/20187-large_default/maksikleit-maxi0664-2.jpg", name: "baby" },
-        { url: "http://dresshouse.it/13931-large_default/maksikleit-maxi0204-1.jpg"},
-        { url: "http://dresshouse.it/7455-large_default/maksikleit-maxi0087-8.jpg"},
-
-        { url: "http://dresshouse.it/20228-large_default/maksikleit-maxi0665-2.jpg", name: "woman" },
-        { url: "http://dresshouse.it/20195-large_default/maksikleit-maxi0665-3.jpg",name: "woman" },
-        { url: "http://dresshouse.it/19882-large_default/maksikleit-maxi0630-3.jpg"},
-        { url: "http://dresshouse.it/19765-large_default/maksikleit-maxi0636-4.jpg",},
-        { url: "http://dresshouse.it/20590-large_default/kleit-klt1561-3.jpg", name:"shakira" },
-        { url: "http://dresshouse.it/15692-large_default/kleit-klt1561-1.jpg", name: "cat" },
-        { url: "http://dresshouse.it/20187-large_default/maksikleit-maxi0664-2.jpg", name: "baby" },
-        { url: "http://dresshouse.it/13931-large_default/maksikleit-maxi0204-1.jpg"},
-        { url: "http://dresshouse.it/7455-large_default/maksikleit-maxi0087-8.jpg"},
-
-        { url: "http://dresshouse.it/20228-large_default/maksikleit-maxi0665-2.jpg", name: "woman" },
-        { url: "http://dresshouse.it/20195-large_default/maksikleit-maxi0665-3.jpg",name: "woman" },
-        { url: "http://dresshouse.it/19882-large_default/maksikleit-maxi0630-3.jpg"},
-        { url: "http://dresshouse.it/19765-large_default/maksikleit-maxi0636-4.jpg",},
-        { url: "http://dresshouse.it/20590-large_default/kleit-klt1561-3.jpg", name:"shakira" },
-        { url: "http://dresshouse.it/15692-large_default/kleit-klt1561-1.jpg", name: "cat" },
-        { url: "http://dresshouse.it/20187-large_default/maksikleit-maxi0664-2.jpg", name: "baby" },
-        { url: "http://dresshouse.it/13931-large_default/maksikleit-maxi0204-1.jpg"},
-        { url: "http://dresshouse.it/7455-large_default/maksikleit-maxi0087-8.jpg"},
-
-        { url: "http://dresshouse.it/20228-large_default/maksikleit-maxi0665-2.jpg", name: "woman" },
-        { url: "http://dresshouse.it/20195-large_default/maksikleit-maxi0665-3.jpg",name: "woman" },
-        { url: "http://dresshouse.it/19882-large_default/maksikleit-maxi0630-3.jpg"},
-        { url: "http://dresshouse.it/19765-large_default/maksikleit-maxi0636-4.jpg",},
-        { url: "http://dresshouse.it/20590-large_default/kleit-klt1561-3.jpg", name:"shakira" },
-        { url: "http://dresshouse.it/15692-large_default/kleit-klt1561-1.jpg", name: "cat" },
-        { url: "http://dresshouse.it/20187-large_default/maksikleit-maxi0664-2.jpg", name: "baby" },
-        { url: "http://dresshouse.it/13931-large_default/maksikleit-maxi0204-1.jpg"},
-        { url: "http://dresshouse.it/7455-large_default/maksikleit-maxi0087-8.jpg"},
-
-        { url: "http://dresshouse.it/20228-large_default/maksikleit-maxi0665-2.jpg", name: "woman" },
-        { url: "http://dresshouse.it/20195-large_default/maksikleit-maxi0665-3.jpg",name: "woman" },
-        { url: "http://dresshouse.it/19882-large_default/maksikleit-maxi0630-3.jpg"},
-        { url: "http://dresshouse.it/19765-large_default/maksikleit-maxi0636-4.jpg",},
-        { url: "http://dresshouse.it/20590-large_default/kleit-klt1561-3.jpg", name:"shakira" },
-        { url: "http://dresshouse.it/15692-large_default/kleit-klt1561-1.jpg", name: "cat" },
-        { url: "http://dresshouse.it/20187-large_default/maksikleit-maxi0664-2.jpg", name: "baby" },
-        { url: "http://dresshouse.it/13931-large_default/maksikleit-maxi0204-1.jpg"},
-        { url: "http://dresshouse.it/7455-large_default/maksikleit-maxi0087-8.jpg"},
-
-        { url: "http://dresshouse.it/20228-large_default/maksikleit-maxi0665-2.jpg", name: "woman" },
-        { url: "http://dresshouse.it/20195-large_default/maksikleit-maxi0665-3.jpg",name: "woman" },
-        { url: "http://dresshouse.it/19882-large_default/maksikleit-maxi0630-3.jpg"},
-        { url: "http://dresshouse.it/19765-large_default/maksikleit-maxi0636-4.jpg",},
-        { url: "http://dresshouse.it/20590-large_default/kleit-klt1561-3.jpg", name:"shakira" },
-        { url: "http://dresshouse.it/15692-large_default/kleit-klt1561-1.jpg", name: "cat" },
-        { url: "http://dresshouse.it/20187-large_default/maksikleit-maxi0664-2.jpg", name: "baby" },
-        { url: "http://dresshouse.it/13931-large_default/maksikleit-maxi0204-1.jpg"},
-        { url: "http://dresshouse.it/7455-large_default/maksikleit-maxi0087-8.jpg"},
-
-        { url: "http://dresshouse.it/20228-large_default/maksikleit-maxi0665-2.jpg", name: "woman" },
-        { url: "http://dresshouse.it/20195-large_default/maksikleit-maxi0665-3.jpg",name: "woman" },
-        { url: "http://dresshouse.it/19882-large_default/maksikleit-maxi0630-3.jpg"},
-        { url: "http://dresshouse.it/19765-large_default/maksikleit-maxi0636-4.jpg",},
-        { url: "http://dresshouse.it/20590-large_default/kleit-klt1561-3.jpg", name:"shakira" },
-        { url: "http://dresshouse.it/15692-large_default/kleit-klt1561-1.jpg", name: "cat" },
-        { url: "http://dresshouse.it/20187-large_default/maksikleit-maxi0664-2.jpg", name: "baby" },
-        { url: "http://dresshouse.it/13931-large_default/maksikleit-maxi0204-1.jpg"},
-        { url: "http://dresshouse.it/7455-large_default/maksikleit-maxi0087-8.jpg"},
-
-        { url: "http://dresshouse.it/20228-large_default/maksikleit-maxi0665-2.jpg", name: "woman" },
-        { url: "http://dresshouse.it/20195-large_default/maksikleit-maxi0665-3.jpg",name: "woman" },
-        { url: "http://dresshouse.it/19882-large_default/maksikleit-maxi0630-3.jpg"},
-        { url: "http://dresshouse.it/19765-large_default/maksikleit-maxi0636-4.jpg",},
-        { url: "http://dresshouse.it/20590-large_default/kleit-klt1561-3.jpg", name:"shakira" },
-        { url: "http://dresshouse.it/15692-large_default/kleit-klt1561-1.jpg", name: "cat" },
-        { url: "http://dresshouse.it/20187-large_default/maksikleit-maxi0664-2.jpg", name: "baby" },
-        { url: "http://dresshouse.it/13931-large_default/maksikleit-maxi0204-1.jpg"},
-        { url: "http://dresshouse.it/7455-large_default/maksikleit-maxi0087-8.jpg"},
-
-        { url: "http://dresshouse.it/20228-large_default/maksikleit-maxi0665-2.jpg", name: "woman" },
-        { url: "http://dresshouse.it/20195-large_default/maksikleit-maxi0665-3.jpg",name: "woman" },
-        { url: "http://dresshouse.it/19882-large_default/maksikleit-maxi0630-3.jpg"},
-        { url: "http://dresshouse.it/19765-large_default/maksikleit-maxi0636-4.jpg",},
-        { url: "http://dresshouse.it/20590-large_default/kleit-klt1561-3.jpg", name:"shakira" },
-        { url: "http://dresshouse.it/15692-large_default/kleit-klt1561-1.jpg", name: "cat" },
-        { url: "http://dresshouse.it/20187-large_default/maksikleit-maxi0664-2.jpg", name: "baby" },
-        { url: "http://dresshouse.it/13931-large_default/maksikleit-maxi0204-1.jpg"},
-        { url: "http://dresshouse.it/7455-large_default/maksikleit-maxi0087-8.jpg"},
       ],
       currentIndex: 0,
-      btnTags: [{tagid: '0', pressed: false}, {tagid: '1', pressed: false}, {tagid: '2', pressed: false}, {tagid: '3', pressed: false},
-                {tagid: '4', pressed: false}, {tagid: '5', pressed: false}, {tagid: '6', pressed: false}, {tagid: '7', pressed: false},
-                {tagid: '8', pressed: false}, {tagid: '9', pressed: false}, {tagid: '10', pressed: false}, {tagid: '11', pressed: false},
-                {tagid: '12', pressed: false}, {tagid: '13', pressed: false}, {tagid: '14', pressed: false}, {tagid: '15', pressed: false},
+      btnTags: [{tag_id: '0', pressed: false}, {tag_id: '1', pressed: false}, {tag_id: '2', pressed: false}, {tag_id: '3', pressed: false},
+                {tag_id: '4', pressed: false}, {tag_id: '5', pressed: false}, {tag_id: '6', pressed: false}, {tag_id: '7', pressed: false},
+                {tag_id: '8', pressed: false}, {tag_id: '9', pressed: false}, {tag_id: '10', pressed: false}, {tag_id: '11', pressed: false},
+                {tag_id: '12', pressed: false}, {tag_id: '13', pressed: false}, {tag_id: '14', pressed: false}, {tag_id: '15', pressed: false},
       ],
+      userProfile: {},
+      tagidArray: {},
       numColumns: 4,
       total: 0,
+      loading: false,
     };
   }
 
   componentDidMount(){
-    this.setState({total: this.state.images.length})
+    this.loadProfile();
+    this.loadTags();
+    this.loadImages();
   }
 
   static navigationOptions = {
     header: null,
   }
 
-  onPressOrder = (item, index) => {
+  loadProfile = () => {
+    let profile = this.props.navigation.getParam('products').data;
+    let userProfile = {
+      balance_points: profile.balance_points,
+      facebook_id: profile.facebook_id,
+      rewards_points: profile.rewards_points,
+      trust_lvl: profile.trust_lvl,
+    }
+    console.log('userProfile = ', userProfile);
+    this.setState({userProfile});
+  }
+
+  loadImages = () => {
+    let imageArray = this.props.navigation.getParam('products').products;
+    let tagidList = this.props.navigation.getParam('products').tag_ids;
+    let newImages = [];
+    // string img_id= "20090";
+    // string image_folder= "2/0/0/9/0/";
+    // string image_url = 
+    // string url= "https://dresshouse.ee/img/p/2/0/0/9/0/20090.jpg";
+
+    // console.log(imageArray);
+    // console.log(tag_ids);
+
+    imageArray.forEach(a => {
+        let image_folder = a.image_id.split('').join('/') + '/';
+        let image_url = "https://dresshouse.ee/img/p/" + image_folder + a.image_id + ".jpg";
+        let tag_id = "";
+        
+        tagidList.forEach(b => {
+          if (b.product_id == a.product_id) {
+            tag_id = b.tag_id;
+          }
+        })
+        
+        let image = {
+          product_id: a.product_id,
+          url: image_url,
+          tag_ids: tag_id,
+        }
+        // console.log(image);
+        newImages.push(image)
+    });
+    console.log('00000000000000000000000000000000');
+    console.log(tagidList);
+    this.setState(
+      {
+        images: newImages,
+        tagidList: tagidList,
+        total: newImages.length
+      },
+      () => {
+        this.loadTags();
+      }
+    );
+  }
+
+  loadTags = () => {
+    const btnTags = this.props.navigation.getParam('tags').tags;
+
+    let newBtnTags = [];
+    btnTags.forEach(element => {
+        let tag = {
+          tag_id: element.tag_id,
+          tag_name: element.tag_name,
+          pressed: false,
+        }
+        newBtnTags.push(tag)
+    });
+    this.setState({btnTags: newBtnTags});
+    this.setState(
+      {
+        btnTags: newBtnTags
+      },
+      () => {
+        console.log('----------------------- --- --- ', this.state.images[0].tag_ids);
+        this.setTagStatus(this.state.images[0].tag_ids);
+      }
+    );
+  }
+
+  // set initialize status of Tags each image
+  setTagStatus = (tag_ids) => {
+    console.log(tag_ids);
+    const {btnTags} = this.state;
+    let newBtnTags = [];
+    let tagidArray = tag_ids.split(',');
+
+    btnTags.forEach(element => {
+        let pressed = false;
+        tagidArray.forEach(id => {
+          if(id == element.tag_id) pressed = true;
+        });
+        let tag = {
+          tag_id: element.tag_id,
+          tag_name: element.tag_name,
+          pressed: pressed,
+        }
+        newBtnTags.push(tag)
+    });
+    this.setState({btnTags: newBtnTags});
+  }
+
+  onPressTag = (item, index) => {
     const {btnTags} = this.state;
     console.log('pressed! = ', index);
     let tempItem = {
@@ -161,25 +182,138 @@ export default class HomeScreen extends Component {
     }
     let newBtnTags = [];
     btnTags.forEach(element => {
-      if (element.tagid != item.tagid)
+      if (element.tag_id != item.tag_id)
         newBtnTags.push(element)
       else
         newBtnTags.push(tempItem)
     });
-    this.setState({btnTags: newBtnTags});
-    console.log(newBtnTags);
+    this.setState(
+      {
+        btnTags: newBtnTags
+      },
+      () => {
+        this.updateImageArraybyTag();
+      }
+    );
   };
+
+  // update image array including tag string array from tag button  (ex, 3,4,8,3,5,9,)
+  updateImageArraybyTag = () => {
+      let imageArray = this.state.images;
+      let product_id = this.state.images[this.state.currentIndex].product_id;
+      let newImageArray = [];
+
+      const {tagidList} = this.state;
+      const {btnTags} = this.state;
+      let tagidArray = "";
+      let balance_points = 0;
+
+      btnTags.forEach(item => {
+        if(item.pressed == true)
+          tagidArray = tagidArray + item.tag_id + ",";
+      })
+
+      let tempProduct = {
+        ...this.state.images[this.state.currentIndex],
+        tag_ids: tagidArray
+      }
+
+      // update total image array
+      imageArray.forEach(a => {
+        if(a.product_id != product_id) {
+          newImageArray.push(a);
+          if (a.tag_ids.length > 0)
+              balance_points ++;
+        }
+        else {
+          newImageArray.push(tempProduct);
+          if (tempProduct.tag_ids.length > 0)
+            balance_points ++;
+        }
+      })
+
+      // update Tagid list
+      let newTagidList = [];
+      newImageArray.forEach(a => {
+        if (a.tag_ids.length > 0) {
+          let tempTag = {
+            product_id: a.product_id,
+            tag_id: a.tag_ids,
+          }
+          newTagidList.push(tempTag);
+        }
+      })
+
+      // update profile(balance)
+      // let userProfile = {
+      //   ...this.state.userProfile,
+      //   balance_points: balance_points,
+      // }
+
+      // this.setState({images: newImageArray, tagidList: newTagidList, userProfile: userProfile});
+      this.setState({images: newImageArray, tagidList: newTagidList});
+  }
 
   // Handled swipe position change
   screenChange = index => {
+    // send info to server
+    this.requestInfo();
+
     console.log("index when change :=> ", index);
     this.setState({ currentIndex: index });
+    console.log(this.state.images[index].product_id);
+    this.setTagStatus(this.state.images[index].tag_ids);
+
+
   };
   
+  requestInfo = () => {
+    let product_id = this.state.images[this.state.currentIndex].product_id;
+    let tag_ids = this.state.images[this.state.currentIndex].tag_ids;
+
+    // if(tag_ids.length < 1)
+    //   return;
+
+    let payload = {
+      facebook_id: this.state.userProfile.facebook_id,
+      product_id: product_id,
+      tag_id: tag_ids,
+      tagging_duration: 0,
+    }
+
+
+    // {"facebook_id": "104292378043578", "product_id": "8280", "tag_id": "3,4,7,8,9,"}
+
+    console.log(' ---------- whenever move to next screen, send to server -------------');
+    console.log(payload);
+
+    const onSuccess = ({ data }) => {
+        console.log('---------success');
+        console.log(data);
+        
+        let userProfile = {
+          ...this.state.userProfile,
+          balance_points: data.data.balance_points,
+        }
+
+        this.setState({userProfile: userProfile})
+        this.setState({loading: false});
+    }
+    const onFailure = error => {
+      console.log('---------------------- 5  -------');
+        this.setState({loading: false});
+        console.log(error);
+    }
+    this.setState({loading: true});
+    USERAPIKit.post('/result_update.php', payload)
+        .then(onSuccess)
+        .catch(onFailure)
+
+  }
   // Adjust(fill) end item of row in FlatList Grid
   formatData = (data, numColumns) => {
     let tempData = {
-      tagid: 'none',
+      tag_id: 'none',
       empty: true
     }
 
@@ -203,7 +337,7 @@ export default class HomeScreen extends Component {
     return (
         <View style={styles.tagGroup1}>
           <View style={styles.tagGroup}>
-            <TouchableOpacity style={styles.tagItem} onPress={() => this.onPressOrder(item, index)}>
+            <TouchableOpacity style={styles.tagItem} onPress={() => this.onPressTag(item, index)}>
                 {!item.pressed ?
                   <Image
                     style={styles.imgTagBkg}
@@ -217,7 +351,7 @@ export default class HomeScreen extends Component {
                 }
                 
                 <Text style={styles.textTag}>
-                  TAGS
+                  {item.tag_name}
                 </Text>
             </TouchableOpacity>
           </View>
@@ -228,6 +362,8 @@ export default class HomeScreen extends Component {
   render() {
     return (
       <SafeAreaView style={styles.container}>
+        <Spinner
+          visible={this.state.loading} size="large" style={styles.spinnerStyle} />
         <View style={styles.header}>
           <View style={styles.levelItem}>
             <View style={styles.levelValueItem}>
@@ -236,7 +372,7 @@ export default class HomeScreen extends Component {
                 source={imgLevel}
               />
               <Text style={styles.textLevelValue}>
-                1
+                {this.state.userProfile.trust_lvl}
               </Text>
             </View>
             <Text style={styles.textLevel}>
@@ -245,7 +381,7 @@ export default class HomeScreen extends Component {
           </View>
 
           <View style={styles.progressbarItem}>
-            <Progress.Bar useNativeDriver = {true} height = {12} width = {270} progress={(this.state.currentIndex+1)/this.state.total} color={'#ffe1a5'} borderWidth={2} borderColor={'rgba(255,214,116,1)'} borderRadius = {10} style={styles.progressbar} />
+            <Progress.Bar useNativeDriver = {true} height = {12} width = {230} progress={(this.state.currentIndex+1)/this.state.total} color={'#ffe1a5'} borderWidth={2} borderColor={'rgba(255,214,116,1)'} borderRadius = {10} style={styles.progressbar} />
             {/* <Image
               style={styles.imgProgressbar} // must be passed from the parent, the number may vary depending upon your screen size
               source={imgProgressbar}
@@ -259,7 +395,7 @@ export default class HomeScreen extends Component {
                 source={imgPoint}
               />
               <Text style={styles.textLevelValue}>
-                1200
+                {this.state.userProfile.balance_points}
               </Text>
             </View>
             <Text style={styles.textLevel}>
@@ -280,7 +416,7 @@ export default class HomeScreen extends Component {
               source={imgArrowLeft}
             /> */}
           </View>
-          <View style={{flex: 12}}>
+          <View style={{flex: 19}}>
               <Swiper
                 style={styles.wrapper}
                 onIndexChanged={(index) => 
@@ -456,7 +592,7 @@ const styles = StyleSheet.create({
       resizeMode: "stretch",
     },
     middleGroup: {
-      flex: 10,
+      flex: 25,
       flexDirection: "row",
       justifyContent: "space-between",
       backgroundColor: 'black',
